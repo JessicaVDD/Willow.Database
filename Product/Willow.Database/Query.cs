@@ -5,7 +5,9 @@ using System.Text;
 
 namespace Willow.Database
 {
-    public class Class1
+    public interface Query
     {
+        string SourceName { get; set; }
+        string QueryName { get; set; }
     }
 }
