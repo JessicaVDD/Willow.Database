@@ -6,10 +6,37 @@ using System.Threading.Tasks;
 
 namespace Willow.Database.Tests
 {
+    interface IQuery<TInput, TOutput>
+    {
+        TInput Input { get; }
+        TOutput Output { set; }
+        int Result { get; }
+    }
+    class TheQuery<TInput, TOutput> : IQuery<TInput, TOutput>
+    {
+        
+    }
+
     class Class1
     {
         public void Test()
         {
+            //query class = class met input args
+            //return class = class met output args
+
+            //theDatasource = class met geg voor connectie naar db
+
+            //thecontext = connection + transaction
+
+            theDataSource.GetContext().List<ReturnType>(theQuery);   //.List(typeof(ReturnType), theQuery)
+            theDataSource.GetContext().First<ReturnType>(theQuery);  //.First(typeof(ReturnType), theQuery)
+            theDataSource.GetContext().Execute(theQuery);            //.Execute(typeof(ReturnType), theQuery)
+
+            theQuery.List<ReturnType>();     // Alleen als theQuery : IQuery => statement & type
+
+                
+            
+
             theQuery.Execute().List<ItemType>();
             theQuery.Execute().Value(typeof(ItemType));
             theQuery.Execute().First();
